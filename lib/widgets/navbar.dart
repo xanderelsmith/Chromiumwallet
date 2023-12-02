@@ -17,27 +17,36 @@ class NavBarWidget extends StatelessWidget {
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15), color: Colors.white),
-      width: screensize.width / 1.8,
+      width: screensize.width / 1.2,
       child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: List.generate(
-              icons.length,
+              NavIcon.values.length,
               (index) => navigationValue == index
                   ? ElevatedButton.icon(
                       onPressed: () {
                         changeNavPostion(index);
                       },
-                      icon: icons[index],
-                      label: const Text('Home'),
+                      icon: NavIcon.values[index].icon,
+                      label: Text(NavIcon.values[index].name),
                     )
-                  : icons[index])),
+                  : GestureDetector(
+                      onTap: () {
+                        changeNavPostion(index);
+                      },
+                      child: NavIcon.values[index].icon))),
     );
   }
 }
 
-List<Icon> icons = [
-  const Icon(Icons.home),
-  const Icon(Icons.assistant_navigation),
-  const Icon(Icons.wallet),
-  const Icon(Icons.person),
-];
+enum NavIcon {
+  home(
+    Icon(Icons.home),
+  ),
+  navigation(Icon(Icons.assistant_navigation)),
+  wallet(Icon(Icons.wallet)),
+  persona(Icon(Icons.person));
+
+  final Icon icon;
+  const NavIcon(this.icon);
+}

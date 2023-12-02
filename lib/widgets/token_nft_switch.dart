@@ -1,4 +1,3 @@
-import 'package:chromiumwallet/widgets/custombutton.dart';
 import 'package:flutter/material.dart';
 
 class TokenNftSwitch extends StatefulWidget {
